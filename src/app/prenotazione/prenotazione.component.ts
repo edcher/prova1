@@ -18,7 +18,7 @@ export class PrenotazioneComponent implements OnInit {
   constructor(private service: TeatroService) { }
 
   testiamo (parte: any){
-    console.log(parte)
+    console.log(parte);
   }
 
   prenotaPosto(parte: any, i: number, j: number){
