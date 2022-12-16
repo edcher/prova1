@@ -17,27 +17,32 @@ class Teatro {
 })
 
 export class AppComponent  {
-  @Output() new_teatro_event = new EventEmitter<string>();
+  @Output() event = new EventEmitter<string>();
   title: string = 'Prenotazioni spettacolo';
   spettacolo: Teatro;
   platea: any[] = [];
   palco: any[] = [];
+  chiave: string;
   constructor(private service: TeatroService) { }
 
   creaSpettacolo(){
     this.spettacolo = new Teatro(7,10,4,6);
-    this.service.setSpettacolo("c484205d", this.spettacolo).subscribe({
-      //next: ( x: any ) => console.log("Lo spettacolo è stato creato"),
-      next: ( x: any ) => {
-        this.new_teatro_event.emit("c484205d");
-        console.log("Lo spettacolo è stato creato");
+    this.service.newSpettacolo().subscribe({
+      next: ( key: any ) => {
+        this.service.setSpettacolo(key, this.spettacolo).subscribe({
+          next: ( x: any ) => {
+            this.event.emit(key);
+            console.log("Lo spettacolo con la chiave "+this.chiave+" è stato creato");
+            this.cercaSpettacolo(key);
+          },
+          error: err => console.error('Observer got an error: ' + JSON.stringify(err))
+        })
       },
       error: err => console.error('Observer got an error: ' + JSON.stringify(err))
     })
   }
 
-  cercaSpettacolo(){
-    const key = "c484205d";
+  cercaSpettacolo(key: string){
     this.service.getSpettacolo(key).subscribe({
       next: (x: any) => { 
       const spettacolo = JSON.parse(x);
@@ -46,12 +51,11 @@ export class AppComponent  {
       console.log(spettacolo.platea);
       this.platea = spettacolo.platea;
       this.palco = spettacolo.palco;
+      this.chiave = key;
       },
       error: err => console.error('Observer got an error: ' + JSON.stringify(err))
     })
   }
 
-  mostraPalcoscenico(platea: any, palco: any){
 
-  }
 }
