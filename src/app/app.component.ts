@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { TeatroService } from './teatro.service';
 
-class Teatro {
+export class Teatro {
   platea: any[] = [];
   palco: any[] = [];
   constructor (nFilePlatea, nPostiPlatea, nFilePalco, nPostiPalco) {
@@ -76,6 +76,5 @@ export class AppComponent  {
       },
       error: err => console.error('Observer got an error: ' + JSON.stringify(err))
     })
-
   }
 }
