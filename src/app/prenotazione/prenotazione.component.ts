@@ -17,8 +17,16 @@ export class PrenotazioneComponent implements OnInit {
 
   constructor(private service: TeatroService) { }
 
+  testiamo (parte: any){
+    console.log(parte)
+  }
+
   prenotaPosto(parte: any, i: number, j: number){
+    console.log("ciaone");
+    console.log(this.spettacolo);
+    console.log(this.spettacolo.platea);
     if (parte == this.platea){
+      console.log("problems?")
       this.spettacolo.platea[i][j] = this.utente;
     }
     else if (parte == this.palco){

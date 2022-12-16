@@ -63,18 +63,4 @@ export class AppComponent  {
     console.log("Utente " + this.utente)
   }
 
-  prenotaPosto(parte: any, i: number, j: number){
-    if (parte == this.platea){
-      this.spettacolo.platea[i][j] = this.utente;
-    }
-    else if (parte == this.palco){
-      this.spettacolo.palco[i][j] = this.utente;
-    }
-    this.service.setSpettacolo(this.chiave, this.spettacolo).subscribe({
-      next: ( x: any ) => {
-        console.log("Successo");
-      },
-      error: err => console.error('Observer got an error: ' + JSON.stringify(err))
-    })
-  }
 }
