@@ -17,7 +17,7 @@ export class TeatroService {
     return this.http.get<string>(this.URL+"get?key="+key);
   }
 
-  setSpettacolo(key: string, teatro: any[]): Observable<string> {
+  setSpettacolo(key: string, teatro: any): Observable<string> {
     return this.http.post<string>(this.URL+"set?key="+key, teatro);
   }
 
