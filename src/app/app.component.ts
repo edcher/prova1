@@ -23,6 +23,7 @@ export class AppComponent  {
   platea: any[] = [];
   palco: any[] = [];
   chiave: string;
+  utente: string = undefined;
   constructor(private service: TeatroService) { }
 
   creaSpettacolo(){
@@ -57,5 +58,7 @@ export class AppComponent  {
     })
   }
 
-
+  mostraPalcoscenico(nome: string){
+    this.utente = nome;
+  }
 }
