@@ -61,4 +61,15 @@ export class AppComponent  {
   mostraPalcoscenico(nome: string){
     this.utente = nome;
   }
+
+  prenotaPosto(i: number, j: number){
+    this.platea[i][j] = this.utente;
+    this.service.setSpettacolo(this.chiave, this.platea.concat(this.palco)).subscribe({
+      next: ( x: any ) => {
+        console.log("Successo");
+      },
+      error: err => console.error('Observer got an error: ' + JSON.stringify(err))
+    })
+
+  }
 }
