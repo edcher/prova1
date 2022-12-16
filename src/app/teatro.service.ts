@@ -9,8 +9,16 @@ export class TeatroService {
 
   constructor(private http: HttpClient) { }
 
-  nuovoSpettacolo(): Observable<string> {
+  newSpettacolo(): Observable<string> {
     return this.http.get<string>(this.URL+"new?secret="+this.secret);
+  }
+
+  getSpettacolo(key: string): Observable<string> {
+    return this.http.get<string>(this.URL+"get?key="+key);
+  }
+
+  setSpettacolo(key: string, teatro: any[]): Observable<string> {
+    return this.http.post<string>(this.URL+"set?key="+key, teatro);
   }
 
 }
