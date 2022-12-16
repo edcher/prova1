@@ -27,10 +27,10 @@ export class AppComponent  {
   constructor(private service: TeatroService) { }
 
   creaSpettacolo(){
-    this.spettacolo = new Teatro(7,10,4,6);
+    const spettacolo = new Teatro(7,10,4,6);
     this.service.newSpettacolo().subscribe({
       next: ( key: any ) => {
-        this.service.setSpettacolo(key, this.spettacolo).subscribe({
+        this.service.setSpettacolo(key, spettacolo).subscribe({
           next: ( x: any ) => {
             this.event.emit(key);
             console.log("Lo spettacolo con la chiave "+this.chiave+" è stato creato");
@@ -46,12 +46,12 @@ export class AppComponent  {
   cercaSpettacolo(key: string){
     this.service.getSpettacolo(key).subscribe({
       next: (x: any) => { 
-      const spettacolo = JSON.parse(x);
-      console.log(spettacolo);
-      console.log(spettacolo.palco);
-      console.log(spettacolo.platea);
-      this.platea = spettacolo.platea;
-      this.palco = spettacolo.palco;
+      this.spettacolo = JSON.parse(x);
+      console.log(this.spettacolo);
+      console.log(this.spettacolo.palco);
+      console.log(this.spettacolo.platea);
+      this.platea = this.spettacolo.platea;
+      this.palco = this.spettacolo.palco;
       this.chiave = key;
       },
       error: err => console.error('Observer got an error: ' + JSON.stringify(err))
@@ -63,8 +63,8 @@ export class AppComponent  {
   }
 
   prenotaPosto(i: number, j: number){
-    this.platea[i][j] = this.utente;
-    this.service.setSpettacolo(this.chiave, this.platea.concat(this.palco)).subscribe({
+    this.spettacolo.platea[i][j] = this.utente;
+    this.service.setSpettacolo(this.chiave, this.spettacolo).subscribe({
       next: ( x: any ) => {
         console.log("Successo");
       },
