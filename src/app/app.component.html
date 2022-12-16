@@ -4,9 +4,9 @@
 <input #key (keyup.enter)="cercaSpettacolo(key.value); key.value=''">
 <br><br>
 <button (click)="creaSpettacolo()">Crea</button>
-<h3> Spettacolo {{chiave}} </h3>
-<p> Inserisci il nome </p>
-<input #nome (keyup.enter)="mostraPalcoscenico(nome.value); nome.value=''">
+
+<app-nominativo (NominativoEvent)="mostraPalcoscenico($event)"> </app-nominativo>
+
 <div *ngIf = "utente !== undefined">
 <p> Prenotazione di {{utente}} </p>
 <h4> Platea </h4>

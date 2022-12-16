@@ -5,10 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { TeatroService } from './teatro.service';
+import { NominativoComponent } from './nominativo/nominativo.component';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpClientModule ],
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent, NominativoComponent ],
   bootstrap:    [ AppComponent ],
   providers: [TeatroService]
 })

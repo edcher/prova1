@@ -60,6 +60,7 @@ export class AppComponent  {
 
   mostraPalcoscenico(nome: string){
     this.utente = nome;
+    console.log("Utente " + this.utente)
   }
 
   prenotaPosto(parte: any, i: number, j: number){
